@@ -30,6 +30,9 @@ const RestaurantCard = () => {
         src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/RX_THUMBNAIL/IMAGES/VENDOR/2024/5/26/6adf18b9-0a2e-45ad-b587-3f714762f7bd_898044.jpg"
       />
       <h3>Meghana Food</h3>
+      <h4>Biriyani,North Indian,Asian</h4>
+      <h4>4.4 stars </h4>
+      <h4>40 minutes</h4>
     </div>
   );
 };

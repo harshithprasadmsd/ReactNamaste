@@ -3,7 +3,7 @@ export const resList = [
     id: 1,
     name: "Spicy Village",
     cuisine: "Chinese",
-    rating: 4.5,
+    rating: 3.5,
     image: "https://picsum.photos/200?random=1",
   },
   {

@@ -8,12 +8,12 @@ const Body = () => {
   useEffect(() => {
     setTimeout(() => {
       setListOfRestaurant(resList);
-    }, 10);
+    }, 1000);
   }, []);
-  if (listOfRestaurant.length === 0) {
-    return <Shimmer></Shimmer>;
-  }
-  return (
+
+  return listOfRestaurant.length === 0 ? (
+    <Shimmer />
+  ) : (
     <div className="body">
       <div className="filter">
         <button

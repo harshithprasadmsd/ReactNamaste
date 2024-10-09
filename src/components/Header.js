@@ -1,7 +1,9 @@
 import { LOGO_URL } from "../utils/constants";
 import { useState } from "react";
+
 const Header = () => {
   const [btnName, setBtnName] = useState("login");
+
   return (
     <div className="header">
       <div className="logoContainer">

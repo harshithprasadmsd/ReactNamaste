@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header.js";
 import Body from "./components/Body.js";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import About from "./components/About.js";
 import Contacts from "./components/Contacts.js";
 import ErrorPage from "./components/ErrorPage.js";
@@ -10,23 +10,29 @@ const AppLayout = () => {
   return (
     <div className="app">
       <Header />
-      <Body />
+      <Outlet />
     </div>
   );
 };
 const appRouter = createBrowserRouter([
   {
-    path: "./",
+    path: "/",
     element: <AppLayout />,
+    children: [
+      {
+        path: "",
+        element: <Body />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/contacts",
+        element: <Contacts />,
+      },
+    ],
     errorElement: <ErrorPage />,
-  },
-  {
-    path: "/about",
-    element: <About />,
-  },
-  {
-    path: "/contacts",
-    element: <Contacts />,
   },
 ]);
 

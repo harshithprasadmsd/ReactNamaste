@@ -41,6 +41,7 @@ const Body = () => {
         <button
           className="filter-btn"
           onClick={() => {
+            console.log("inside filtered rating");
             setListOfRestaurant(
               listOfRestaurant.filter((res) => res.rating > 4)
             );

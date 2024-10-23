@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 const Body = () => {
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
   const [filteredResto, setFilteredResto] = useState([]);
-  console.log("body rendered");
   const [searchValue, setSearchValue] = useState("");
   useEffect(() => {
     setTimeout(() => {

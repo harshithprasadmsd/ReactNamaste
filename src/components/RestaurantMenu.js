@@ -1,24 +1,19 @@
-import resDetails from "../utils/menuData";
+import useFindData from "../utils/useFindData";
 import { useParams } from "react-router-dom";
 
 const RestaurantMenu = () => {
   const { resID } = useParams();
-  //   console.log(resDetails);
-  console.log(resID);
-  resDetails.map((resto) => {
-    console.log(resto.id);
-  });
-  const restaurant = resDetails.find((resto) => resto.id == resID);
-  console.log(restaurant);
-  const menu = restaurant.menu;
+  const resto = useFindData(resID);
+  const { id, name, cuisine, rating, menu } = resto;
+
   return (
     <div>
-      <h1>{restaurant.name}</h1>
-      <h2>cuisine {restaurant.cuisine}</h2>
-      <h3>rating {restaurant.rating}</h3>
+      <h1>{name}</h1>
+      <h2>cuisine {cuisine}</h2>
+      <h3>rating {rating}</h3>
       <ul>
-        {menu.map((item) => (
-          <li>{item.dishName}</li>
+        {menu.map((item, index) => (
+          <li key={index}>{item.dishName}</li>
         ))}
       </ul>
     </div>

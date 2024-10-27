@@ -5,6 +5,7 @@ export const resList = [
     cuisine: "Chinese",
     rating: 3.5,
     image: "https://picsum.photos/200?random=1",
+    promoted: true,
   },
   {
     id: 2,
@@ -33,5 +34,6 @@ export const resList = [
     cuisine: "French",
     rating: 4.8,
     image: "https://picsum.photos/200?random=5",
+    promoted: true,
   },
 ];

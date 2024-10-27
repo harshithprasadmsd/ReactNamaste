@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { PromotedRestaurantCard } from "./RestaurantCard";
 import { resList } from "../utils/mockData";
 import { useEffect, useState } from "react";
 import Shimmer from "./shimmer";
@@ -16,21 +16,23 @@ const Body = () => {
     }, 1000);
   }, []);
   const onlineStaus = useOnlineStatus();
+  const RestaurantCardPromoted = PromotedRestaurantCard(RestaurantCard);
 
   if (onlineStaus === false) return <h1>check your internet connection</h1>;
   return listOfRestaurant.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="filter">
-        <div className="search">
+      <div className="flex ">
+        <div className="">
           <input
             type="text"
-            className="search-box"
+            className="border-solid border-5 bg-orange-50"
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
           />
           <button
+            className="bg-yellow-150 px-3"
             onClick={() => {
               const filteredRestoList = listOfRestaurant.filter((res) =>
                 res.name.toLowerCase().includes(searchValue.toLowerCase())
@@ -42,7 +44,7 @@ const Body = () => {
           </button>
         </div>
         <button
-          className="filter-btn"
+          className="bg-slate-300 "
           onClick={() => {
             console.log("inside filtered rating");
             setListOfRestaurant(
@@ -50,13 +52,17 @@ const Body = () => {
             );
           }}
         >
-          top rated Restaurants
+          top rated Restaurant
         </button>
       </div>
-      <div className="resto-container">
+      <div className="flex">
         {filteredResto.map((restaurant) => (
           <Link key={restaurant.id} to={`/restoMenu/${restaurant.id}`}>
-            <RestaurantCard restaurant={restaurant} />
+            {restaurant.promoted == true ? (
+              <RestaurantCardPromoted restaurant={restaurant} />
+            ) : (
+              <RestaurantCard restaurant={restaurant} />
+            )}
           </Link>
         ))}
       </div>

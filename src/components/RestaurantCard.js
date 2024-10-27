@@ -10,5 +10,16 @@ const RestaurantCard = ({ restaurant }) => {
     </div>
   );
 };
+export const PromotedRestaurantCard = (RestaurantCard) => {
+  return ({ restaurant }) => {
+    return (
+      <div>
+        {console.log("entering ", RestaurantCard)}
+        <label className="absolute text-yellow-300 bg-black">promoted</label>
+        <RestaurantCard restaurant={restaurant} />
+      </div>
+    );
+  };
+};
 
 export default RestaurantCard;

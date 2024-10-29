@@ -1,5 +1,6 @@
 import RestaurantCard, { PromotedRestaurantCard } from "./RestaurantCard";
 import { resList } from "../utils/mockData";
+import data from "../utils/swiggyData";
 import { useEffect, useState } from "react";
 import Shimmer from "./shimmer";
 import { Link } from "react-router-dom";
@@ -10,10 +11,14 @@ const Body = () => {
   const [filteredResto, setFilteredResto] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   useEffect(() => {
-    setTimeout(() => {
-      setListOfRestaurant(resList);
-      setFilteredResto(resList);
-    }, 1000);
+    const temp =
+      data.data.cards[4].card.card.gridElements.infoWithStyle.restaurants;
+    console.log(data);
+    setListOfRestaurant(temp);
+    // setTimeout(() => {
+    //   setListOfRestaurant(resList);
+    //   setFilteredResto(resList);
+    // }, 1000);
   }, []);
   const onlineStaus = useOnlineStatus();
   const RestaurantCardPromoted = PromotedRestaurantCard(RestaurantCard);
@@ -22,17 +27,17 @@ const Body = () => {
   return listOfRestaurant.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="body">
+    <div className="">
       <div className="flex ">
         <div className="">
           <input
             type="text"
-            className="border-solid border-5 bg-orange-50"
+            className="border border-gray-300 focus:border-blue-500 focus:outline-none px-2 py-0.5 ml-3 mr-1 rounded-lg"
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
           />
           <button
-            className="bg-yellow-150 px-3"
+            className="bg-black px-3 rounded text-stone-400 mr-4"
             onClick={() => {
               const filteredRestoList = listOfRestaurant.filter((res) =>
                 res.name.toLowerCase().includes(searchValue.toLowerCase())
@@ -44,7 +49,7 @@ const Body = () => {
           </button>
         </div>
         <button
-          className="bg-slate-300 "
+          className="rounded bg-orange-400 text-indigo-600"
           onClick={() => {
             console.log("inside filtered rating");
             setListOfRestaurant(
@@ -55,15 +60,9 @@ const Body = () => {
           top rated Restaurant
         </button>
       </div>
-      <div className="flex">
-        {filteredResto.map((restaurant) => (
-          <Link key={restaurant.id} to={`/restoMenu/${restaurant.id}`}>
-            {restaurant.promoted == true ? (
-              <RestaurantCardPromoted restaurant={restaurant} />
-            ) : (
-              <RestaurantCard restaurant={restaurant} />
-            )}
-          </Link>
+      <div className="flex flex-wrap gap-4 flex-row w-full p-5 justify-start pl-32">
+        {listOfRestaurant.map((restaurant, index) => (
+          <RestaurantCard key={index} restaurant={restaurant} />
         ))}
       </div>
     </div>
